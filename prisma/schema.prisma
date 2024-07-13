@@ -17,8 +17,8 @@ model User {
   avatar     String?
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  Product    Product[]
   SMSToken   SMSToken[]
+  Product    Product[]
 }
 
 model SMSToken {

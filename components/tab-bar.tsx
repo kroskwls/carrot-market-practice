@@ -22,7 +22,7 @@ export default function TabBar() {
 
   return (
     <div className="fixed w-full bottom-0 left-0">
-      <div className="max-w-screen-sm mx-auto grid grid-cols-5 border-neutral-600 border-t px-5 py-3 *:text-white">
+      <div className="max-w-screen-sm mx-auto grid grid-cols-5 border-neutral-600 border-t px-5 py-3 *:text-white bg-neutral-800">
         <Link href="/products" className="flex flex-col items-center gap-px">
           {pathname === "/products" ? (
             <SolidHomeIcon className="size-7" />
