@@ -11,7 +11,7 @@
     "migrate": "prisma migrate dev"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.4",
+    "@heroicons/react": "^2.1.5",
     "@prisma/client": "^5.16.1",
     "@tailwindcss/forms": "^0.5.7",
     "bcrypt": "^5.1.1",

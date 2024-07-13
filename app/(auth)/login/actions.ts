@@ -24,7 +24,7 @@ const formSchema = z.object({
     .refine(checkEmailExists, "An account with this email does not exist."),
   password: z
     .string({ required_error: "Password is required" })
-})
+});
 
 export async function login(prevState: any, formData: FormData) {
   const data = {
@@ -46,11 +46,7 @@ export async function login(prevState: any, formData: FormData) {
     });
 
     const ok = await bcrypt.compare(result.data.password, user!.password ?? "");
-    if (ok) {
-      const session = await getSession();
-      session.id = user!.id;
-      redirect("/profile");
-    } else {
+    if (!ok) {
       return {
         fieldErrors: {
           password: ["Wrong password."],
@@ -58,8 +54,11 @@ export async function login(prevState: any, formData: FormData) {
         }
       };
     }
+    
+    const session = await getSession();
+    session.id = user!.id;
+    await session.save();
 
-    // log the user in
-    // redirect "profile"
+    redirect("/profile");
   }
 }

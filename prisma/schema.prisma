@@ -9,14 +9,15 @@ datasource db {
 
 model User {
   id         Int        @id @default(autoincrement())
-  created_at DateTime   @default(now())
-  updated_at DateTime   @updatedAt
   name       String     @unique
   email      String?    @unique
   password   String?
   phone      String?    @unique
   github_id  String?    @unique
   avatar     String?
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Product    Product[]
   SMSToken   SMSToken[]
 }
 
@@ -25,6 +26,18 @@ model SMSToken {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   token      String   @unique
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  title       String
+  price       Int
+  photo       String
+  description String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 }
