@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import getSession from "./lib/session";
+import { getSession } from "./lib/session";
 
 interface Routes {
   [key: string]: boolean;
@@ -10,7 +10,9 @@ const onlyPublicUrls: Routes = {
   "/": true,
   "/login": true,
   "/sms": true,
-  "/create-account": true
+  "/create-account": true,
+  "/github/start": true,
+  "/github/complete": true
 };
 
 export async function middleware(request: NextRequest) {

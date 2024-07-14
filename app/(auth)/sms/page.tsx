@@ -13,7 +13,6 @@ const initialState = {
 
 export default function SMSLogin() {
   const [state, dispatch] = useFormState(smsLogin, initialState);
-
   return (
     <div className="flex flex-col gap-10 py-8 px-6">
       <div className="flex flex-col gap-2 *:font-medium">
@@ -28,8 +27,9 @@ export default function SMSLogin() {
           name="phone"
           placeholder="Phone number"
           required
-          errors={state.error?.formErrors}
-          disabled={state.token}
+          errors={state.error?.fieldErrors.phone}
+          // disabled={state.token}
+          readOnly={state.token}
         />
         {state?.token ? (
           <Input
@@ -40,7 +40,7 @@ export default function SMSLogin() {
             required
             min={100_000}
             max={999_999}
-            errors={state.error?.formErrors}
+            errors={state.error?.fieldErrors.token}
           />
         ) : null}
         <Button text={state.token ? "Verify Token" : "Send Verification SMS"} />

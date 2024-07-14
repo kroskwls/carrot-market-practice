@@ -5,7 +5,7 @@ import db from "@/lib/db";
 import { custom, z } from "zod";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
-import getSession from "@/lib/session";
+import { getSession, saveSession } from "@/lib/session";
 
 interface IPasswords {
   password: string;
@@ -118,10 +118,7 @@ export async function createAccount(prevState: any, formData: FormData) {
       },
       select: { id: true }
     });
-    const session = await getSession();
-    session.id = user.id;
-    await session.save();
 
-    redirect("/login");
+    await saveSession(user.id, "/login");
   }
 }
