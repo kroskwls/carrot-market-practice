@@ -10,6 +10,7 @@ import { useFormState } from "react-dom";
 export default function AddProduct() {
   const [state, dispatch] = useFormState(uploadProduct, null);
   const [preview, setPreview] = useState("");
+
   const onImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
     if (!files) {
